@@ -1,5 +1,5 @@
 # Ignore user_token.json
-/configs/user_token.json
+configs/user_token.json
 
 # Ignore Mac OS X files
 .DS_Store
