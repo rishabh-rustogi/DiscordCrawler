@@ -20,7 +20,7 @@ Download and Upload functions
 ###############################################
 #####               CONSTANTS             ##### 
 ###############################################
-BASEURL = 'https://discord.com/api/v9/'
+BASE_URL = 'https://discord.com/api/v9/'
 GLOBAL_RATE_LIMIT_PER_SEC = 50
 BASE_USER_SERVER_CHANNEL = {}
 DATA_FOLDER = 'data/{}/'.format(datetime.now().strftime('%Y-%m-%d'))
@@ -139,6 +139,7 @@ def uploadFolder(bucketName, prefix, source):
 
     uploadFolderRecursively(bucketName, prefix, source)
 
+
 '''
 Uploads a File to GCP Storage with level deeper than 1
 @params bucketName: Name of the bucket to upload the file to
@@ -150,6 +151,7 @@ def uploadFolderRecursively(bucketName, prefix, source):
     for relative_path in relative_paths:
         if os.path.isfile(relative_path):
             uploadFile(bucketName, relative_path, prefix + relative_path.replace(source, ''))
+
 
 '''
 Upload a single file to GCP Storage
@@ -233,8 +235,8 @@ Dump json data to a file
 '''
 def writeFile(path, json_data):
     logging.info('Writing file: {}'.format(path))
-    fileRoute = path.split('/')
-    createFolder('/'.join(fileRoute[:-1]))
+    file_route = path.split('/')
+    createFolder('/'.join(file_route[:-1]))
     try:
         with open(path, 'w') as f:
             json.dump(json_data, 
@@ -289,7 +291,7 @@ def updateConfigs():
             user_server_channel[user] = {}
 
         # Read the user's guilds
-        guilds = requestURLResponse(BASEURL + urls['guilds'], 
+        guilds = requestURLResponse(BASE_URL + urls['guilds'], 
                                     user_token[user]['token'], 
                                     url_params['guilds'])
 
@@ -305,7 +307,7 @@ def updateConfigs():
                 user_server_channel[user][guild['id']] = {}
 
             # Read the user's channels
-            channels = requestURLResponse(BASEURL + urls['channels'].format(guild['id']), 
+            channels = requestURLResponse(BASE_URL + urls['channels'].format(guild['id']), 
                                             user_token[user]['token'], 
                                             url_params['channels'])
 
@@ -473,7 +475,7 @@ def extractMessageFromExploredChannels():
                     messages_JSON = createBaseMessageJSON(user, guild, channel, user_server_channel[user][guild][channel]['name'])
                     
                     # Request the latest messages from the channel
-                    messages = requestURLResponse(BASEURL + urls['messages'].format(channel), 
+                    messages = requestURLResponse(BASE_URL + urls['messages'].format(channel), 
                                                     user_token[user]['token'], 
                                                     {'limit': 1})
                     
@@ -507,7 +509,7 @@ def extractMessageFromExploredChannels():
                         params['before'] = last_message_processed
                         
                         # Request the messages before the BEFORE param
-                        messages = requestURLResponse(BASEURL + urls['messages'].format(channel), 
+                        messages = requestURLResponse(BASE_URL + urls['messages'].format(channel), 
                                                         user_token[user]['token'], 
                                                         params)
                         
@@ -627,7 +629,7 @@ def extractMessageFromNewChannels():
                     print("Processing channel: {}".format(user_server_channel[user][guild][channel]['name']))
 
                     # Request the latest messages from the channel
-                    messages = requestURLResponse(BASEURL + urls['messages'].format(channel), 
+                    messages = requestURLResponse(BASE_URL + urls['messages'].format(channel), 
                                                     user_token[user]['token'], 
                                                     {'limit': 1})
                     
@@ -652,7 +654,7 @@ def extractMessageFromNewChannels():
                         params['before'] = last_message_processed
                         
                         # Request the messages before the BEFORE param
-                        messages = requestURLResponse(BASEURL + urls['messages'].format(channel), 
+                        messages = requestURLResponse(BASE_URL + urls['messages'].format(channel), 
                                                         user_token[user]['token'], 
                                                         params)
 
@@ -748,4 +750,3 @@ if __name__ == "__main__":
     
     if uploadLogFile:
         uploadLogs()
-    
