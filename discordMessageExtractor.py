@@ -6,6 +6,7 @@ import requests
 import json
 import time
 import glob
+import shutil
 
 '''
 Importing GCP libraries
@@ -184,6 +185,17 @@ def createFolder(folderName):
     if not os.path.exists(folderName):
         logging.info('Creating folder {}'.format(folderName))
         os.makedirs(folderName)
+
+'''
+Delete a folder and all its contents recursively
+@params folderName: Name of the folder to delete
+@requires: OS Permissions to delete the folder
+'''
+def deleteFolder(folderName):
+    # Check if the folder exists and delete it if it does
+    if os.path.exists(folderName):
+        logging.info('Deleting folder {}'.format(folderName))
+        shutil.rmtree(folderName)
 
 
 '''
@@ -744,9 +756,19 @@ if __name__ == "__main__":
     elif args.mode == 'extractNew':
         logging.info('Running in extract mode: NEW')
         extractMessageFromNewChannels()
+    elif args.mode == 'extractAll':
+        logging.info('Running in do all mode')
+        updateConfigs()
+        extractMessageFromExploredChannels()
+        extractMessageFromNewChannels()
     else:
         print('Invalid mode')
         uploadLogFile = False
     
     if uploadLogFile:
         uploadLogs()
+
+    # Deleting the data folder and the configs folder after the script is done
+    deleteFolder('data/')
+    deleteFolder('configs/')
+    
