@@ -1,8 +1,9 @@
 # Ignore user_token.json
 configs/user_token.json
 
-# Ignore Mac OS X files
+# Ignore Mac OS X files and ipynb checkpoints
 .DS_Store
+.ipynb_checkpoints
 
 # Ignore .env file
 .env
