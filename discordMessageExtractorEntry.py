@@ -35,7 +35,7 @@ download_attachments = False
 download_attachments_MAX_SIZE = 8388608 #8MB
 
 # Sample search expression (TODO: add to config file)
-regex_filter_expression = [".*paypal.*", ".*pay.*"] 
+regex_filter_expression = [".*paypal.*"] 
 
 # URL endpoints for Discord API
 urls = {
@@ -400,6 +400,8 @@ def checkFiltersOnMessage(message):
     content = message['content']
     if content is None or len(content) == 0:
         return False
+    
+    valid = True
     for filter in regex_filter_expression:
         if not re.search(filter, content):
             return False
