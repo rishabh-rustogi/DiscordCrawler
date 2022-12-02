@@ -1,1 +1,69 @@
-{}
+{
+    "user1": {
+        "1015029498317651979": {
+            "1015029498317651981": {
+                "name": "links-and-resources",
+                "started": "2022-12-02 15:54:12",
+                "last_processed": "1046943741832863755",
+                "latest_message_id": "1046943741832863755",
+                "status": "processed"
+            },
+            "1015029498317651982": {
+                "name": "board",
+                "started": "2022-12-02 15:54:12",
+                "last_processed": "1048256974200000572",
+                "latest_message_id": "1048256974200000572",
+                "status": "processed"
+            },
+            "1015029498317651984": {
+                "name": "general",
+                "started": "2022-12-02 15:54:12",
+                "last_processed": "1048256347646464060",
+                "latest_message_id": "1048256347646464060",
+                "status": "processed"
+            },
+            "1015031158985216030": {
+                "name": "group-members",
+                "started": "2022-12-02 15:54:12",
+                "last_processed": "1015065206277283861",
+                "latest_message_id": "1015065206277283861",
+                "status": "processed"
+            },
+            "1015034452717613189": {
+                "name": "meeting-notes",
+                "started": "2022-12-02 15:54:12",
+                "last_processed": "1030181583275172021",
+                "latest_message_id": "1030181583275172021",
+                "status": "processed"
+            },
+            "1015100841633521674": {
+                "name": "annoucements",
+                "started": "2022-12-02 15:54:12",
+                "last_processed": "1025427140923113477",
+                "latest_message_id": "1025451082534625311",
+                "status": "processed"
+            },
+            "1021810748185399348": {
+                "name": "presentations",
+                "started": "2022-12-02 15:54:12",
+                "last_processed": "1037183766856208414",
+                "latest_message_id": "1037183766856208414",
+                "status": "processed"
+            },
+            "1025640484850372608": {
+                "name": "important-dates",
+                "started": "2022-12-02 15:54:12",
+                "last_processed": "1025640525321211944",
+                "latest_message_id": "1025640525321211944",
+                "status": "processed"
+            },
+            "1042661740627886150": {
+                "name": "data-dumps",
+                "started": "2022-12-02 15:54:12",
+                "last_processed": "1046820657297637496",
+                "latest_message_id": "1046820657297637496",
+                "status": "processed"
+            }
+        }
+    }
+}

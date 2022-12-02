@@ -1,5 +1,5 @@
 #! /bin/bash
   apt update
-  cd /home/rishabh_rustogi/discord-crawler/
-  python3 discordMessageExtractor.py --mode extractAll
+  cd
+  python3 discordMessageExtractor_NO_GCP.py --mode extractAll --size 9000000
   poweroff

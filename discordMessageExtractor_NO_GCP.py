@@ -7,6 +7,9 @@ import json
 import time
 import glob
 import shutil
+import firebase_admin
+from firebase_admin import credentials, firestore
+import json
 
 '''
 Importing GCP libraries
@@ -31,6 +34,7 @@ BUCKET_NAME = 'discordchatexporter'
 # Define global variables
 requests_per_second = 0
 start_time = time.time_ns()
+file_size_limit = 8000000
 
 # URL endpoints for Discord API
 urls = {
@@ -208,6 +212,7 @@ def createCMDParser():
 
     # Add the arguments
     parser.add_argument('--mode', type=str, default='help', help='Mode to run the program in')
+    parser.add_argument('--size', type=int, default=8000000, help='Maximum media file size to download')
     return parser
 
 
@@ -260,6 +265,32 @@ def writeFile(path, json_data):
         # uploadLogs()
         exit(1)
 
+'''
+upload the user_token and user_server_channel_DO_NOT_EDIT to firestore
+channel_path is the path of user_token.json
+token_path is the path of user_server_channel_DO_NOT_EDIT.json
+db_key is the key of firestore
+'''
+def upload_json_file(channel_path, token_path, db_key):
+    # Fetch the service account key JSON file contents
+    cred = credentials.Certificate(db_key)
+    # Initialize the app with a service account, granting admin privileges
+    firebase_admin.initialize_app(cred)
+
+    db = firestore.client()
+
+    f_server = open(channel_path)
+    f_token = open(token_path)
+    server_data = json.load(f_server)
+    token_data = json.load(f_token)
+    f_server.close()
+    f_token.close()
+    for user in server_data:
+        for server in server_data[user]:
+            for channel in server_data[user][server]:
+                doc_ref = db.collection("crawlerdb").document(channel)
+                doc_ref.set(server_data[user][server][channel])
+                doc_ref.set(token_data[user], merge=True)
 
 '''
 Update the config file with the latest data
@@ -405,7 +436,7 @@ def downloadContent(url, path):
         logging.info('Downloading file: {}'.format(url))
         # Get the file size and download the file only if it is smaller than 8MB
         fileSize = int(requests.head(url).headers['Content-Length'])
-        if fileSize < 8388608:
+        if fileSize < file_size_limit:
             with open(path + fileName, 'wb') as f:
                 f.write(requests.get(url).content)
         else:
@@ -745,6 +776,9 @@ if __name__ == "__main__":
 
     # Set upload logs to true
     uploadLogFile = True
+
+    # Set media file size limit based on the command line arguments
+    file_size_limit = args.size
 
     # Based on the command line arguments, call the appropriate function
     if args.mode == 'update':

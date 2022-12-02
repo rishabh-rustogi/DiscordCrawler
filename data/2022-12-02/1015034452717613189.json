@@ -1,0 +1,739 @@
+{
+    "user_id": "user1",
+    "guild_id": "1015029498317651979",
+    "channel_id": "1015034452717613189",
+    "channel_name": "meeting-notes",
+    "messages": [
+        {
+            "id": "1015034619663499315",
+            "type": 0,
+            "content": "Sep 1 meeting with Ari\nHere is a list of action items discussed today:\n\n- Set up a structure: meeting schedule\n- Have a list of contacts/stakeholders\n- Be prepared PayPal with Discord\n- Delegate the following roles:\n    - Project Manager\n    - Financial Manager\n    - Market Analyst | who goes on discord, psychographics, demographics, why they go on discord, what they do on discord, etc.\n    - Data modelers/ data analysts\n- Take a look into mechanisms around data scraping\n- Have a list of questions for Adam\n    1. Why is PayPal interested in this?\n    2. What is the scope of the project\n    3. Have some idea about the scope: Is the scope around a long-term strategic perspective?",
+            "channel_id": "1015034452717613189",
+            "author": {
+                "id": "373611054955233290",
+                "username": "sakisaki",
+                "avatar": "c196838f0286fa1072690c83fa817fcf",
+                "avatar_decoration": null,
+                "discriminator": "1716",
+                "public_flags": 0
+            },
+            "attachments": [],
+            "embeds": [],
+            "mentions": [],
+            "mention_roles": [],
+            "pinned": false,
+            "mention_everyone": false,
+            "tts": false,
+            "timestamp": "2022-09-01T23:05:11.759000+00:00",
+            "edited_timestamp": null,
+            "flags": 0,
+            "components": []
+        },
+        {
+            "id": "1015072522540167258",
+            "type": 0,
+            "content": "FYI - The capstone guidebook expects team members to fill following 4 roles, some of which are not covered in what the prof said...\n\n- Project Manager\n- Process Organizer\n- Chief Systems Administrator\n- Financial Manager",
+            "channel_id": "1015034452717613189",
+            "author": {
+                "id": "1014964079380668446",
+                "username": "Ryosuke",
+                "avatar": "58acbdb647346fa96b4df21dc7bf4e22",
+                "avatar_decoration": null,
+                "discriminator": "1399",
+                "public_flags": 0
+            },
+            "attachments": [],
+            "embeds": [],
+            "mentions": [],
+            "mention_roles": [],
+            "pinned": false,
+            "mention_everyone": false,
+            "tts": false,
+            "timestamp": "2022-09-02T01:35:48.509000+00:00",
+            "edited_timestamp": null,
+            "flags": 0,
+            "components": []
+        },
+        {
+            "id": "1015076617812455444",
+            "type": 0,
+            "content": "And the followings are the action items the guidebook expects us to do soon\n\n<In the 1st week>\n 1. Hold the 1st meeting with the client\n 2. Submit the Acknowledgement of Receipt (PDF form in which we inform PM and FM)\n\n<In the 2nd week>\n3. Team to have Critical Think Piece Exercise after the 1st client meeting and submit a written summary",
+            "channel_id": "1015034452717613189",
+            "author": {
+                "id": "1014964079380668446",
+                "username": "Ryosuke",
+                "avatar": "58acbdb647346fa96b4df21dc7bf4e22",
+                "avatar_decoration": null,
+                "discriminator": "1399",
+                "public_flags": 0
+            },
+            "attachments": [],
+            "embeds": [],
+            "mentions": [],
+            "mention_roles": [],
+            "pinned": false,
+            "mention_everyone": false,
+            "tts": false,
+            "timestamp": "2022-09-02T01:52:04.898000+00:00",
+            "edited_timestamp": "2022-09-02T01:52:45.045000+00:00",
+            "flags": 0,
+            "components": []
+        },
+        {
+            "id": "1017571168712146994",
+            "type": 0,
+            "content": "I have added this in the Minutes of Meeting folder:\n\n**Prof Lightman\u2019s suggestions:**\n- Start with introductions\n- Make sure if it's okay with Adam to record\n- Still have legitimate notes, present meeting notes\n- Have a list of flexible schedules\n- Try to get some time at least every other week (if not every week)\n- Decide on a schedule \u2013 a time frame when you\u2019re presenting your final presentation\n\n\n**Additional questions:**\nHave people at Paypal been looking at specific communities in discord that may be potentially valuable\nIf you have done this before, what keywords and phrases do you look for that help you identify potential threat modeling?\n\n**Other meeting notes:**\n- Yet to finalize all roles\n- There may be chances that OSI tells us nothing\n- We need to do a market analysis on how many communities are, how they are segmented, and which ones are pertinent to PayPal when it comes to threat modeling\n- Discord may not be the best platform for scraping data\n- We might need to have a heart-to-heart convo with Adam, \u201cHere\u2019s a discord channel open for scraping, here are some that are closed. You may be booted off that community\u201d.",
+            "channel_id": "1015034452717613189",
+            "author": {
+                "id": "1015028994745311332",
+                "username": "A Sngh",
+                "avatar": null,
+                "avatar_decoration": null,
+                "discriminator": "8042",
+                "public_flags": 0
+            },
+            "attachments": [],
+            "embeds": [],
+            "mentions": [],
+            "mention_roles": [],
+            "pinned": false,
+            "mention_everyone": false,
+            "tts": false,
+            "timestamp": "2022-09-08T23:04:32.179000+00:00",
+            "edited_timestamp": null,
+            "flags": 0,
+            "components": [],
+            "reactions": [
+                {
+                    "emoji": {
+                        "id": null,
+                        "name": "\ud83d\udc4d"
+                    },
+                    "count": 4,
+                    "burst_user_ids": [],
+                    "burst_count": 0,
+                    "burst_colors": [],
+                    "burst_me": false,
+                    "me": true
+                }
+            ]
+        },
+        {
+            "id": "1020022172120535130",
+            "type": 0,
+            "content": "Here is auto transcription of today's meeting with PayPal (some are wrongly taken though)\nhttps://docs.google.com/document/d/1beeDKn8tqVG7mcBrAozw750Fp_UUYMM2/edit?usp=sharing&ouid=116696577599504072606&rtpof=true&sd=true",
+            "channel_id": "1015034452717613189",
+            "author": {
+                "id": "1014964079380668446",
+                "username": "Ryosuke",
+                "avatar": "58acbdb647346fa96b4df21dc7bf4e22",
+                "avatar_decoration": null,
+                "discriminator": "1399",
+                "public_flags": 0
+            },
+            "attachments": [],
+            "embeds": [],
+            "mentions": [],
+            "mention_roles": [],
+            "pinned": false,
+            "mention_everyone": false,
+            "tts": false,
+            "timestamp": "2022-09-15T17:23:56.929000+00:00",
+            "edited_timestamp": null,
+            "flags": 0,
+            "components": [],
+            "reactions": [
+                {
+                    "emoji": {
+                        "id": null,
+                        "name": "\ud83d\udc4d"
+                    },
+                    "count": 3,
+                    "burst_user_ids": [],
+                    "burst_count": 0,
+                    "burst_colors": [],
+                    "burst_me": false,
+                    "me": true
+                }
+            ]
+        },
+        {
+            "id": "1020025048830054450",
+            "type": 19,
+            "content": "Everyone, feel free to add your own notes to this doc. Thanks!",
+            "channel_id": "1015034452717613189",
+            "author": {
+                "id": "697417085290152016",
+                "username": "GoingOnceGoingTwice",
+                "avatar": "418b26d3a90accc53e22b5695cd8f32f",
+                "avatar_decoration": null,
+                "discriminator": "9645",
+                "public_flags": 0
+            },
+            "attachments": [],
+            "embeds": [],
+            "mentions": [
+                {
+                    "id": "1014964079380668446",
+                    "username": "Ryosuke",
+                    "avatar": "58acbdb647346fa96b4df21dc7bf4e22",
+                    "avatar_decoration": null,
+                    "discriminator": "1399",
+                    "public_flags": 0
+                }
+            ],
+            "mention_roles": [],
+            "pinned": false,
+            "mention_everyone": false,
+            "tts": false,
+            "timestamp": "2022-09-15T17:35:22.790000+00:00",
+            "edited_timestamp": "2022-09-15T17:35:32.736000+00:00",
+            "flags": 0,
+            "components": [],
+            "message_reference": {
+                "channel_id": "1015034452717613189",
+                "guild_id": "1015029498317651979",
+                "message_id": "1020022172120535130"
+            },
+            "referenced_message": {
+                "id": "1020022172120535130",
+                "type": 0,
+                "content": "Here is auto transcription of today's meeting with PayPal (some are wrongly taken though)\nhttps://docs.google.com/document/d/1beeDKn8tqVG7mcBrAozw750Fp_UUYMM2/edit?usp=sharing&ouid=116696577599504072606&rtpof=true&sd=true",
+                "channel_id": "1015034452717613189",
+                "author": {
+                    "id": "1014964079380668446",
+                    "username": "Ryosuke",
+                    "avatar": "58acbdb647346fa96b4df21dc7bf4e22",
+                    "avatar_decoration": null,
+                    "discriminator": "1399",
+                    "public_flags": 0
+                },
+                "attachments": [],
+                "embeds": [],
+                "mentions": [],
+                "mention_roles": [],
+                "pinned": false,
+                "mention_everyone": false,
+                "tts": false,
+                "timestamp": "2022-09-15T17:23:56.929000+00:00",
+                "edited_timestamp": null,
+                "flags": 0,
+                "components": []
+            }
+        },
+        {
+            "id": "1020152600328413305",
+            "type": 0,
+            "content": "@everyone \n**Action items before the next meeting with the client:**\nWe're planning on presenting this to the PayPal team. Due date for rough draft: Tuesday\n\n**Ryosuke, Riyaz**  - Bot, permissions, and discord policy\n**Claudia, Akshay**- Research academics papers that mention using discord\n**Rishabh, Young-Cheng** - Joining OSINT servers and checking if valuable threat intelligence pertaining to PayPal, Venmo",
+            "channel_id": "1015034452717613189",
+            "author": {
+                "id": "1015028994745311332",
+                "username": "A Sngh",
+                "avatar": null,
+                "avatar_decoration": null,
+                "discriminator": "8042",
+                "public_flags": 0
+            },
+            "attachments": [],
+            "embeds": [],
+            "mentions": [],
+            "mention_roles": [],
+            "pinned": false,
+            "mention_everyone": true,
+            "tts": false,
+            "timestamp": "2022-09-16T02:02:13.437000+00:00",
+            "edited_timestamp": "2022-09-16T02:04:04.060000+00:00",
+            "flags": 0,
+            "components": [],
+            "reactions": [
+                {
+                    "emoji": {
+                        "id": null,
+                        "name": "\ud83d\udc4d"
+                    },
+                    "count": 3,
+                    "burst_user_ids": [],
+                    "burst_count": 0,
+                    "burst_colors": [],
+                    "burst_me": false,
+                    "me": true
+                }
+            ]
+        },
+        {
+            "id": "1020155624513880095",
+            "type": 0,
+            "content": "September 15 (Internal meeting - 9pm): https://docs.google.com/document/d/1qMFKceMKyo1ce377cB3hTLuZo_WmvucttREJ_wejJYk/edit?usp=sharing",
+            "channel_id": "1015034452717613189",
+            "author": {
+                "id": "977245639954034718",
+                "username": "Rishabh",
+                "avatar": "f7f2e9361e8a54ce6e72580ac7b967af",
+                "avatar_decoration": null,
+                "discriminator": "0526",
+                "public_flags": 0
+            },
+            "attachments": [],
+            "embeds": [
+                {
+                    "type": "link",
+                    "url": "https://docs.google.com/document/d/1qMFKceMKyo1ce377cB3hTLuZo_WmvucttREJ_wejJYk/edit?usp=sharing",
+                    "title": "September 15 (Internal Meeting)",
+                    "provider": {
+                        "name": "Google Docs"
+                    }
+                }
+            ],
+            "mentions": [],
+            "mention_roles": [],
+            "pinned": false,
+            "mention_everyone": false,
+            "tts": false,
+            "timestamp": "2022-09-16T02:14:14.459000+00:00",
+            "edited_timestamp": null,
+            "flags": 0,
+            "components": []
+        },
+        {
+            "id": "1020328303325880401",
+            "type": 0,
+            "content": "Hi Folks - How did the meeting with PayPal go?  I tried to read through the transcription but it's rough.  I saw the action items for next client meeting.  Do you think they are feasible?  Any issues that you folks are planning for?",
+            "channel_id": "1015034452717613189",
+            "author": {
+                "id": "856893578260643882",
+                "username": "ari_light",
+                "avatar": "1f9360809e097188ff6e19583b57e382",
+                "avatar_decoration": null,
+                "discriminator": "8005",
+                "public_flags": 0
+            },
+            "attachments": [],
+            "embeds": [],
+            "mentions": [],
+            "mention_roles": [],
+            "pinned": false,
+            "mention_everyone": false,
+            "tts": false,
+            "timestamp": "2022-09-16T13:40:24.296000+00:00",
+            "edited_timestamp": null,
+            "flags": 0,
+            "components": []
+        },
+        {
+            "id": "1020832502358745128",
+            "type": 19,
+            "content": "Hi Professor, \n\nI think it went well. Adam and his team, were able to answer most of our questions. As far as we understand, the project is a bit open-ended and they are not expecting a working solution (at least by mid-term but something demo-able in the final) instead they want us to experiment with the possibilities. Adam shared that they had a similar use-case with Telegram and they wanted to do something similar on Discord. After the client meeting we discussed each of our roles and assigned tasks. The idea is to be able to present our learnings so far and define a scope in the next client meeting. I think all of us can have a meeting together before the next client meeting. \n\nHere is the recording to the last client meeting: https://cmu.zoom.us/rec/share/P15QTpwQJrzhmtdHV527XQwi9uKoUftacIfnBYQstDk1tGN1-O2sDky1rJIstJiM.5dzkXloqhEUJ39Bz?startTime=1663257868000\nPasscode: 740&cb$x",
+            "channel_id": "1015034452717613189",
+            "author": {
+                "id": "697417085290152016",
+                "username": "GoingOnceGoingTwice",
+                "avatar": "418b26d3a90accc53e22b5695cd8f32f",
+                "avatar_decoration": null,
+                "discriminator": "9645",
+                "public_flags": 0
+            },
+            "attachments": [],
+            "embeds": [
+                {
+                    "type": "link",
+                    "url": "https://cmu.zoom.us/rec/share/P15QTpwQJrzhmtdHV527XQwi9uKoUftacIfnBYQstDk1tGN1-O2sDky1rJIstJiM.5dzkXloqhEUJ39Bz?startTime=1663257868000",
+                    "title": "Video Conferencing, Web Conferencing, Webinars, Screen Sharing",
+                    "description": "Zoom is the leader in modern enterprise video communications, with an easy, reliable cloud platform for video and audio conferencing, chat, and webinars across mobile, desktop, and room systems. Zoom Rooms is the original software-based conference room solution used around the world in board, conference, huddle, and training rooms, as well as ex...",
+                    "reference_id": "1020832502358745128",
+                    "provider": {
+                        "name": "Zoom Video Communications"
+                    },
+                    "thumbnail": {
+                        "url": "https://us01st-cf.zoom.us/static/6.2.8460/image/thumb.png",
+                        "proxy_url": "https://images-ext-2.discordapp.net/external/OA7CjG9R5WMfPuGxNXLxeRkOmPL_l8A_WSvTcIyLYoM/https/us01st-cf.zoom.us/static/6.2.8460/image/thumb.png",
+                        "width": 512,
+                        "height": 512
+                    }
+                }
+            ],
+            "mentions": [
+                {
+                    "id": "856893578260643882",
+                    "username": "ari_light",
+                    "avatar": "1f9360809e097188ff6e19583b57e382",
+                    "avatar_decoration": null,
+                    "discriminator": "8005",
+                    "public_flags": 0
+                }
+            ],
+            "mention_roles": [],
+            "pinned": false,
+            "mention_everyone": false,
+            "tts": false,
+            "timestamp": "2022-09-17T23:03:54.713000+00:00",
+            "edited_timestamp": null,
+            "flags": 0,
+            "components": [],
+            "message_reference": {
+                "channel_id": "1015034452717613189",
+                "guild_id": "1015029498317651979",
+                "message_id": "1020328303325880401"
+            },
+            "referenced_message": {
+                "id": "1020328303325880401",
+                "type": 0,
+                "content": "Hi Folks - How did the meeting with PayPal go?  I tried to read through the transcription but it's rough.  I saw the action items for next client meeting.  Do you think they are feasible?  Any issues that you folks are planning for?",
+                "channel_id": "1015034452717613189",
+                "author": {
+                    "id": "856893578260643882",
+                    "username": "ari_light",
+                    "avatar": "1f9360809e097188ff6e19583b57e382",
+                    "avatar_decoration": null,
+                    "discriminator": "8005",
+                    "public_flags": 0
+                },
+                "attachments": [],
+                "embeds": [],
+                "mentions": [],
+                "mention_roles": [],
+                "pinned": false,
+                "mention_everyone": false,
+                "tts": false,
+                "timestamp": "2022-09-16T13:40:24.296000+00:00",
+                "edited_timestamp": null,
+                "flags": 0,
+                "components": []
+            }
+        },
+        {
+            "id": "1021433631639605290",
+            "type": 19,
+            "content": "thanks let me know if you need anything from me.....",
+            "channel_id": "1015034452717613189",
+            "author": {
+                "id": "856893578260643882",
+                "username": "ari_light",
+                "avatar": "1f9360809e097188ff6e19583b57e382",
+                "avatar_decoration": null,
+                "discriminator": "8005",
+                "public_flags": 0
+            },
+            "attachments": [],
+            "embeds": [],
+            "mentions": [
+                {
+                    "id": "697417085290152016",
+                    "username": "GoingOnceGoingTwice",
+                    "avatar": "418b26d3a90accc53e22b5695cd8f32f",
+                    "avatar_decoration": null,
+                    "discriminator": "9645",
+                    "public_flags": 0
+                }
+            ],
+            "mention_roles": [],
+            "pinned": false,
+            "mention_everyone": false,
+            "tts": false,
+            "timestamp": "2022-09-19T14:52:35.102000+00:00",
+            "edited_timestamp": null,
+            "flags": 0,
+            "components": [],
+            "message_reference": {
+                "channel_id": "1015034452717613189",
+                "guild_id": "1015029498317651979",
+                "message_id": "1020832502358745128"
+            },
+            "referenced_message": {
+                "id": "1020832502358745128",
+                "type": 19,
+                "content": "Hi Professor, \n\nI think it went well. Adam and his team, were able to answer most of our questions. As far as we understand, the project is a bit open-ended and they are not expecting a working solution (at least by mid-term but something demo-able in the final) instead they want us to experiment with the possibilities. Adam shared that they had a similar use-case with Telegram and they wanted to do something similar on Discord. After the client meeting we discussed each of our roles and assigned tasks. The idea is to be able to present our learnings so far and define a scope in the next client meeting. I think all of us can have a meeting together before the next client meeting. \n\nHere is the recording to the last client meeting: https://cmu.zoom.us/rec/share/P15QTpwQJrzhmtdHV527XQwi9uKoUftacIfnBYQstDk1tGN1-O2sDky1rJIstJiM.5dzkXloqhEUJ39Bz?startTime=1663257868000\nPasscode: 740&cb$x",
+                "channel_id": "1015034452717613189",
+                "author": {
+                    "id": "697417085290152016",
+                    "username": "GoingOnceGoingTwice",
+                    "avatar": "418b26d3a90accc53e22b5695cd8f32f",
+                    "avatar_decoration": null,
+                    "discriminator": "9645",
+                    "public_flags": 0
+                },
+                "attachments": [],
+                "embeds": [
+                    {
+                        "type": "link",
+                        "url": "https://cmu.zoom.us/rec/share/P15QTpwQJrzhmtdHV527XQwi9uKoUftacIfnBYQstDk1tGN1-O2sDky1rJIstJiM.5dzkXloqhEUJ39Bz?startTime=1663257868000",
+                        "title": "Video Conferencing, Web Conferencing, Webinars, Screen Sharing",
+                        "description": "Zoom is the leader in modern enterprise video communications, with an easy, reliable cloud platform for video and audio conferencing, chat, and webinars across mobile, desktop, and room systems. Zoom Rooms is the original software-based conference room solution used around the world in board, conference, huddle, and training rooms, as well as ex...",
+                        "reference_id": "1020832502358745128",
+                        "provider": {
+                            "name": "Zoom Video Communications"
+                        },
+                        "thumbnail": {
+                            "url": "https://us01st-cf.zoom.us/static/6.2.8460/image/thumb.png",
+                            "proxy_url": "https://images-ext-2.discordapp.net/external/OA7CjG9R5WMfPuGxNXLxeRkOmPL_l8A_WSvTcIyLYoM/https/us01st-cf.zoom.us/static/6.2.8460/image/thumb.png",
+                            "width": 512,
+                            "height": 512
+                        }
+                    }
+                ],
+                "mentions": [
+                    {
+                        "id": "856893578260643882",
+                        "username": "ari_light",
+                        "avatar": "1f9360809e097188ff6e19583b57e382",
+                        "avatar_decoration": null,
+                        "discriminator": "8005",
+                        "public_flags": 0
+                    }
+                ],
+                "mention_roles": [],
+                "pinned": false,
+                "mention_everyone": false,
+                "tts": false,
+                "timestamp": "2022-09-17T23:03:54.713000+00:00",
+                "edited_timestamp": null,
+                "flags": 0,
+                "components": [],
+                "message_reference": {
+                    "channel_id": "1015034452717613189",
+                    "guild_id": "1015029498317651979",
+                    "message_id": "1020328303325880401"
+                }
+            }
+        },
+        {
+            "id": "1021444344848326706",
+            "type": 19,
+            "content": "If possible can we have call short call with you, when ever you are free before Thursday? We want to discuss about the project objective and get guidance about how to proceed forward.",
+            "channel_id": "1015034452717613189",
+            "author": {
+                "id": "977245639954034718",
+                "username": "Rishabh",
+                "avatar": "f7f2e9361e8a54ce6e72580ac7b967af",
+                "avatar_decoration": null,
+                "discriminator": "0526",
+                "public_flags": 0
+            },
+            "attachments": [],
+            "embeds": [],
+            "mentions": [
+                {
+                    "id": "856893578260643882",
+                    "username": "ari_light",
+                    "avatar": "1f9360809e097188ff6e19583b57e382",
+                    "avatar_decoration": null,
+                    "discriminator": "8005",
+                    "public_flags": 0
+                }
+            ],
+            "mention_roles": [],
+            "pinned": false,
+            "mention_everyone": false,
+            "tts": false,
+            "timestamp": "2022-09-19T15:35:09.330000+00:00",
+            "edited_timestamp": null,
+            "flags": 0,
+            "components": [],
+            "message_reference": {
+                "channel_id": "1015034452717613189",
+                "guild_id": "1015029498317651979",
+                "message_id": "1021433631639605290"
+            },
+            "referenced_message": {
+                "id": "1021433631639605290",
+                "type": 19,
+                "content": "thanks let me know if you need anything from me.....",
+                "channel_id": "1015034452717613189",
+                "author": {
+                    "id": "856893578260643882",
+                    "username": "ari_light",
+                    "avatar": "1f9360809e097188ff6e19583b57e382",
+                    "avatar_decoration": null,
+                    "discriminator": "8005",
+                    "public_flags": 0
+                },
+                "attachments": [],
+                "embeds": [],
+                "mentions": [
+                    {
+                        "id": "697417085290152016",
+                        "username": "GoingOnceGoingTwice",
+                        "avatar": "418b26d3a90accc53e22b5695cd8f32f",
+                        "avatar_decoration": null,
+                        "discriminator": "9645",
+                        "public_flags": 0
+                    }
+                ],
+                "mention_roles": [],
+                "pinned": false,
+                "mention_everyone": false,
+                "tts": false,
+                "timestamp": "2022-09-19T14:52:35.102000+00:00",
+                "edited_timestamp": null,
+                "flags": 0,
+                "components": [],
+                "message_reference": {
+                    "channel_id": "1015034452717613189",
+                    "guild_id": "1015029498317651979",
+                    "message_id": "1020832502358745128"
+                }
+            }
+        },
+        {
+            "id": "1022536792823562291",
+            "type": 0,
+            "content": "hi guys I was caught up with something out of the blue.   Hence, I might be dialing in a bit late (like 5 mins late) so if by the time to present and I\u2019m still not online can <@977245639954034718> help me cover my part (as our content is scheduled to be presented first)?   Thanks",
+            "channel_id": "1015034452717613189",
+            "author": {
+                "id": "758693746438832168",
+                "username": "YC Hsu",
+                "avatar": "c6bf964288513c0e8c98af1f5f38aa96",
+                "avatar_decoration": null,
+                "discriminator": "0449",
+                "public_flags": 0
+            },
+            "attachments": [],
+            "embeds": [],
+            "mentions": [
+                {
+                    "id": "977245639954034718",
+                    "username": "Rishabh",
+                    "avatar": "f7f2e9361e8a54ce6e72580ac7b967af",
+                    "avatar_decoration": null,
+                    "discriminator": "0526",
+                    "public_flags": 0
+                }
+            ],
+            "mention_roles": [],
+            "pinned": false,
+            "mention_everyone": false,
+            "tts": false,
+            "timestamp": "2022-09-22T15:56:09.224000+00:00",
+            "edited_timestamp": null,
+            "flags": 0,
+            "components": []
+        },
+        {
+            "id": "1022589965495959683",
+            "type": 0,
+            "content": "MOM (09/22)\n\nhttps://docs.google.com/document/d/1as4qkpMhRSV7YpFQHgR89UIzKpq27YCtpeNeh4NAf3Q/edit?usp=sharing\n\ncc: <@856893578260643882>",
+            "channel_id": "1015034452717613189",
+            "author": {
+                "id": "697417085290152016",
+                "username": "GoingOnceGoingTwice",
+                "avatar": "418b26d3a90accc53e22b5695cd8f32f",
+                "avatar_decoration": null,
+                "discriminator": "9645",
+                "public_flags": 0
+            },
+            "attachments": [],
+            "embeds": [],
+            "mentions": [
+                {
+                    "id": "856893578260643882",
+                    "username": "ari_light",
+                    "avatar": "1f9360809e097188ff6e19583b57e382",
+                    "avatar_decoration": null,
+                    "discriminator": "8005",
+                    "public_flags": 0
+                }
+            ],
+            "mention_roles": [],
+            "pinned": false,
+            "mention_everyone": false,
+            "tts": false,
+            "timestamp": "2022-09-22T19:27:26.577000+00:00",
+            "edited_timestamp": "2022-09-22T19:27:45.659000+00:00",
+            "flags": 4,
+            "components": [],
+            "reactions": [
+                {
+                    "emoji": {
+                        "id": null,
+                        "name": "\ud83d\udc4d"
+                    },
+                    "count": 2,
+                    "burst_user_ids": [],
+                    "burst_count": 0,
+                    "burst_colors": [],
+                    "burst_me": false,
+                    "me": true
+                }
+            ]
+        },
+        {
+            "id": "1025209527483781260",
+            "type": 0,
+            "content": "MOM of internal meeting (9/29)\nhttps://docs.google.com/document/d/1mp5lTskWoPZghp_vHBtx54DEk97YZ0TsSYZskCYo8HY/edit?usp=sharing",
+            "channel_id": "1015034452717613189",
+            "author": {
+                "id": "1014964079380668446",
+                "username": "Ryosuke",
+                "avatar": "58acbdb647346fa96b4df21dc7bf4e22",
+                "avatar_decoration": null,
+                "discriminator": "1399",
+                "public_flags": 0
+            },
+            "attachments": [],
+            "embeds": [],
+            "mentions": [],
+            "mention_roles": [],
+            "pinned": false,
+            "mention_everyone": false,
+            "tts": false,
+            "timestamp": "2022-09-30T00:56:38.824000+00:00",
+            "edited_timestamp": null,
+            "flags": 1028,
+            "components": [],
+            "reactions": [
+                {
+                    "emoji": {
+                        "id": null,
+                        "name": "\ud83d\udc4d"
+                    },
+                    "count": 1,
+                    "burst_user_ids": [],
+                    "burst_count": 0,
+                    "burst_colors": [],
+                    "burst_me": false,
+                    "me": true
+                }
+            ]
+        },
+        {
+            "id": "1030181583275172021",
+            "type": 0,
+            "content": "MOM of the client meeting (10/13)\nhttps://docs.google.com/document/d/1XgBCfFkqgGF68zCSZ9x8xKn1YzEMjlRp6-JdajjDqpw/edit?usp=sharing",
+            "channel_id": "1015034452717613189",
+            "author": {
+                "id": "1014964079380668446",
+                "username": "Ryosuke",
+                "avatar": "58acbdb647346fa96b4df21dc7bf4e22",
+                "avatar_decoration": null,
+                "discriminator": "1399",
+                "public_flags": 0
+            },
+            "attachments": [],
+            "embeds": [
+                {
+                    "type": "link",
+                    "url": "https://docs.google.com/document/d/1XgBCfFkqgGF68zCSZ9x8xKn1YzEMjlRp6-JdajjDqpw/edit?usp=sharing",
+                    "title": "October 13: MOM of Client Meeting",
+                    "description": "MOM of the Client Meeting on October 13, 2022  Time: 13:00pm-14:00pm Attendees: PayPal: Adam, Nick Heinz: Professor Ari, Akshay, Claudia, Rishabh, Ryosuke, Riyaz  Discussed Items: Legality: Discord's terms of service are a no-stopper for the project. It is a go from the legal team. Adam suggested...",
+                    "provider": {
+                        "name": "Google Docs"
+                    },
+                    "thumbnail": {
+                        "url": "https://lh3.googleusercontent.com/bV_a9gR7aIx3LwaQXGay64cUZEdcd4YuRqSRQWFL7Ys8Loh_HMN-86qzGPDLLYu-QnTJoquWrtUDrA=w1200-h630-p",
+                        "proxy_url": "https://images-ext-1.discordapp.net/external/Prb-fBlnuQf_qGnyGpn4lY4FM3PXbL9P32DPFhmQNf4/https/lh3.googleusercontent.com/bV_a9gR7aIx3LwaQXGay64cUZEdcd4YuRqSRQWFL7Ys8Loh_HMN-86qzGPDLLYu-QnTJoquWrtUDrA%3Dw1200-h630-p",
+                        "width": 1200,
+                        "height": 630
+                    }
+                }
+            ],
+            "mentions": [],
+            "mention_roles": [],
+            "pinned": false,
+            "mention_everyone": false,
+            "tts": false,
+            "timestamp": "2022-10-13T18:13:49.301000+00:00",
+            "edited_timestamp": null,
+            "flags": 1024,
+            "components": []
+        }
+    ]
+}

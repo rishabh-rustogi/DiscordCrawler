@@ -1,0 +1,45 @@
+2022-12-02 15:55:26,065 [INFO] Running in do all mode
+2022-12-02 15:55:26,065 [INFO] Updating configs
+2022-12-02 15:55:26,065 [INFO] Reading configs/user_token.json config
+2022-12-02 15:55:26,065 [INFO] Reading configs/user_server_channel_DO_NOT_EDIT.json config
+2022-12-02 15:55:26,068 [DEBUG] Starting new HTTPS connection (1): discord.com:443
+2022-12-02 15:55:26,317 [DEBUG] https://discord.com:443 "GET /api/v9/users/@me/guilds HTTP/1.1" 200 None
+2022-12-02 15:55:26,325 [DEBUG] Starting new HTTPS connection (1): discord.com:443
+2022-12-02 15:55:26,563 [DEBUG] https://discord.com:443 "GET /api/v9/guilds/1015029498317651979/channels HTTP/1.1" 200 None
+2022-12-02 15:55:26,571 [INFO] Writing file: configs/user_server_channel_DO_NOT_EDIT.json
+2022-12-02 15:55:26,571 [INFO] Configs updated
+2022-12-02 15:55:26,571 [INFO] Downloading configs
+2022-12-02 15:55:26,572 [INFO] Reading configs/user_token.json config
+2022-12-02 15:55:26,572 [INFO] Reading configs/user_server_channel_DO_NOT_EDIT.json config
+2022-12-02 15:55:26,573 [INFO] Extracting messages from channel (User: user1, Guild: 1015029498317651979, Channel: 1015029498317651981)
+2022-12-02 15:55:26,576 [DEBUG] Starting new HTTPS connection (1): discord.com:443
+2022-12-02 15:55:26,783 [DEBUG] https://discord.com:443 "GET /api/v9/channels/1015029498317651981/messages?limit=1 HTTP/1.1" 200 None
+2022-12-02 15:55:26,788 [INFO] Extracting messages from channel (User: user1, Guild: 1015029498317651979, Channel: 1015029498317651982)
+2022-12-02 15:55:26,793 [DEBUG] Starting new HTTPS connection (1): discord.com:443
+2022-12-02 15:55:26,962 [DEBUG] https://discord.com:443 "GET /api/v9/channels/1015029498317651982/messages?limit=1 HTTP/1.1" 200 None
+2022-12-02 15:55:26,965 [INFO] Extracting messages from channel (User: user1, Guild: 1015029498317651979, Channel: 1015029498317651984)
+2022-12-02 15:55:26,967 [DEBUG] Starting new HTTPS connection (1): discord.com:443
+2022-12-02 15:55:27,142 [DEBUG] https://discord.com:443 "GET /api/v9/channels/1015029498317651984/messages?limit=1 HTTP/1.1" 200 None
+2022-12-02 15:55:27,144 [INFO] Extracting messages from channel (User: user1, Guild: 1015029498317651979, Channel: 1015031158985216030)
+2022-12-02 15:55:27,146 [DEBUG] Starting new HTTPS connection (1): discord.com:443
+2022-12-02 15:55:27,318 [DEBUG] https://discord.com:443 "GET /api/v9/channels/1015031158985216030/messages?limit=1 HTTP/1.1" 200 None
+2022-12-02 15:55:27,323 [INFO] Extracting messages from channel (User: user1, Guild: 1015029498317651979, Channel: 1015034452717613189)
+2022-12-02 15:55:27,326 [DEBUG] Starting new HTTPS connection (1): discord.com:443
+2022-12-02 15:55:27,499 [DEBUG] https://discord.com:443 "GET /api/v9/channels/1015034452717613189/messages?limit=1 HTTP/1.1" 200 None
+2022-12-02 15:55:27,504 [INFO] Extracting messages from channel (User: user1, Guild: 1015029498317651979, Channel: 1015100841633521674)
+2022-12-02 15:55:27,507 [DEBUG] Starting new HTTPS connection (1): discord.com:443
+2022-12-02 15:55:27,824 [DEBUG] https://discord.com:443 "GET /api/v9/channels/1015100841633521674/messages?limit=1 HTTP/1.1" 200 None
+2022-12-02 15:55:27,826 [INFO] Extracting messages from channel (User: user1, Guild: 1015029498317651979, Channel: 1021810748185399348)
+2022-12-02 15:55:27,828 [DEBUG] Starting new HTTPS connection (1): discord.com:443
+2022-12-02 15:55:28,068 [DEBUG] https://discord.com:443 "GET /api/v9/channels/1021810748185399348/messages?limit=1 HTTP/1.1" 200 None
+2022-12-02 15:55:28,070 [INFO] Extracting messages from channel (User: user1, Guild: 1015029498317651979, Channel: 1025640484850372608)
+2022-12-02 15:55:28,072 [DEBUG] Starting new HTTPS connection (1): discord.com:443
+2022-12-02 15:55:28,302 [DEBUG] https://discord.com:443 "GET /api/v9/channels/1025640484850372608/messages?limit=1 HTTP/1.1" 200 None
+2022-12-02 15:55:28,306 [INFO] Extracting messages from channel (User: user1, Guild: 1015029498317651979, Channel: 1042661740627886150)
+2022-12-02 15:55:28,309 [DEBUG] Starting new HTTPS connection (1): discord.com:443
+2022-12-02 15:55:28,477 [DEBUG] https://discord.com:443 "GET /api/v9/channels/1042661740627886150/messages?limit=1 HTTP/1.1" 200 None
+2022-12-02 15:55:28,480 [INFO] Writing file: configs/user_server_channel_DO_NOT_EDIT.json
+2022-12-02 15:55:28,481 [INFO] Downloading configs
+2022-12-02 15:55:28,481 [INFO] Reading configs/user_token.json config
+2022-12-02 15:55:28,482 [INFO] Reading configs/user_server_channel_DO_NOT_EDIT.json config
+2022-12-02 15:55:28,483 [INFO] Writing file: configs/user_server_channel_DO_NOT_EDIT.json
