@@ -30,7 +30,7 @@ def upload_json_file(channel_path, token_path):
 
 if __name__ == "__main__":
     # Fetch the service account key JSON file contents
-    cred = credentials.Certificate('')
+    cred = credentials.Certificate('<>')
     # Initialize the app with a service account, granting admin privileges
     firebase_admin.initialize_app(cred)
 
