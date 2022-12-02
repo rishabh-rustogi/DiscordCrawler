@@ -26,7 +26,7 @@ GLOBAL_RATE_LIMIT_PER_SEC = 50
 BASE_USER_SERVER_CHANNEL = {}
 DATA_FOLDER = 'data/{}/'.format(datetime.now().strftime('%Y-%m-%d'))
 DATA_FOLDER_MEDIA = DATA_FOLDER + 'media/'
-BUCKET_NAME = 'discord-chat-data-crawler'
+BUCKET_NAME = 'discord-chat-data'
 
 # Define global variables
 requests_per_second = 0
@@ -35,7 +35,7 @@ download_attachments = False
 download_attachments_MAX_SIZE = 8388608 #8MB
 
 # Sample search expression (TODO: add to config file)
-regex_filter_expression = [".*paypal.*"] 
+regex_filter_expression = [".*paypal.*", ".*pay.*"] 
 
 # URL endpoints for Discord API
 urls = {
@@ -403,9 +403,9 @@ def checkFiltersOnMessage(message):
     
     valid = True
     for filter in regex_filter_expression:
-        if not re.search(filter, content):
-            return False
-    return True
+        if re.search(filter, content):
+            return True
+    return False
 
 '''
 Download the messages for all the channels in the config file 
