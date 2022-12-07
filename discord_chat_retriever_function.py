@@ -9,6 +9,11 @@ import json
 import time
 import glob
 import shutil
+import re
+
+'''
+Importing GCP libraries
+'''
 from google.cloud import storage
 import google.cloud.logging
 
@@ -41,20 +46,6 @@ def http_entry(request):
    deleteFolder("configs/")
    return 'Request Complete.'
 
-
-#    if request_json and 'name' in request_json:
-#        name = request_json['name']
-#    elif request_args and 'name' in request_args:
-#        name = request_args['name']
-#    else:
-#        name = 'World'
-   return 'Hello {}!'.format(name)
-
-'''
-Importing GCP libraries
-'''
-# from google.cloud import pubsub_v1
-
 ''' 
 Download and Upload functions
 '''
@@ -67,12 +58,17 @@ GLOBAL_RATE_LIMIT_PER_SEC = 50
 BASE_USER_SERVER_CHANNEL = {}
 DATA_FOLDER = 'data/{}/'.format(datetime.now().strftime('%Y-%m-%d'))
 DATA_FOLDER_MEDIA = DATA_FOLDER + 'media/'
-BUCKET_NAME = 'discord-chat-exporter'
+BUCKET_NAME = 'discord-chat-data'
 NUM_MESSAGES_PER_FILE = 500
 
 # Define global variables
 requests_per_second = 0
 start_time = time.time_ns()
+download_attachments = False
+download_attachments_MAX_SIZE = 8388608 #8MB
+
+# Sample search expression 
+regex_filter_expression = [] 
 
 # URL endpoints for Discord API
 urls = {
@@ -360,8 +356,9 @@ def updateConfigs():
         # Loop through every guild
         for guild in guilds:
 
-            # Filter out guild for testing
-            if guild['id'] not in ['1015029498317651979']:#, '894349669499568148']:
+            # Filter out guild for testing 
+            # REMOVE THIS LATER
+            if guild['id'] not in ['735708716128796763']:
                 continue
 
             # If guild not in user_server_channel, add it
@@ -466,6 +463,24 @@ def downloadContent(url, path):
         exit(1)
 
 '''
+Check if message content passes all the regex filters
+@param message: Message to check
+'''
+def checkFiltersOnMessage(message):
+    content = message['content']
+    if content is None or len(content) == 0:
+        return False
+
+    if len(regex_filter_expression) == 0:
+        return True
+    
+    valid = True
+    for filter in regex_filter_expression:
+        if re.search(filter, content):
+            return True
+    return False
+
+'''
 Download the messages for all the channels in the config file 
 which have a status of 'processing'
 
@@ -523,92 +538,110 @@ def extractMessageFromExploredChannels():
         for guild in user_server_channel[user]:
             # Loop through every channel and check if the status is 'processing'
             for channel in user_server_channel[user][guild]:
-                # Check if the status is 'processing'
-                if user_server_channel[user][guild][channel]['status'] == "processing":
-                    logging.info('Extracting messages from channel (User: {}, Guild: {}, Channel: {})'.format(
-                        user, 
-                        guild, 
-                        channel))
 
-                    # Get the last message timestamp from the config file
-                    last_proccessed_timestamp = twitterSnowflakeToDatetime(user_server_channel[user][guild][channel]['last_processed'])
-                    
-                    # Create a new JSON object for the channel
-                    messages_JSON = createBaseMessageJSON(user, guild, channel, user_server_channel[user][guild][channel]['name'])
-                    
-                    # Request the latest messages from the channel
-                    messages = requestURLResponse(BASE_URL + urls['messages'].format(channel), 
-                                                    user_token[user]['token'], 
-                                                    {'limit': 1})
-                    
-                    # If the latest message timestamp is <= than the last message processed, ignore the channel
-                    current_timestamp = twitterSnowflakeToDatetime(messages[0]['id'])
-                    if current_timestamp <= last_proccessed_timestamp:
-                        user_server_channel[user][guild][channel]['status'] = "processed"
-                        continue
+                try:
+                    # Check if the status is 'processing'
+                    if user_server_channel[user][guild][channel]['status'] == "processing":
+                        logging.info('Extracting messages from channel (User: {}, Guild: {}, Channel: {})'.format(
+                            user, 
+                            guild, 
+                            channel))
 
-                    if "attachments" in messages[0]:
-                        for attachment in messages[0]["attachments"]:
-                            if 'url' in attachment:
-                                downloadContent(attachment['url'], DATA_FOLDER_MEDIA)
-
-                    # Update the JSON object with the messages
-                    messages_JSON['messages'] = messages
-
-                    # Set the BEFORE param to the timestamp of the latest message processed
-                    last_message_processed = messages_JSON['messages'][0]['id']
-                    
-                    print("Processing channel: {}".format(user_server_channel[user][guild][channel]['name']))
-
-                    # Also, save the latest message ID to store in the config file
-                    latest_message_processed = messages_JSON['messages'][-1]['id']
-                    
-                    check = True
-                    while (check):
-
-                        # Get the 'message' endpoint params and set the before param to the last message processed
-                        params = url_params['messages'].copy()
-                        params['before'] = last_message_processed
+                        # Get the last message timestamp from the config file
+                        last_proccessed_timestamp = twitterSnowflakeToDatetime(user_server_channel[user][guild][channel]['last_processed'])
                         
-                        # Request the messages before the BEFORE param
+                        # Create a new JSON object for the channel
+                        messages_JSON = createBaseMessageJSON(user, guild, channel, user_server_channel[user][guild][channel]['name'])
+                        
+                        # Request the latest messages from the channel
                         messages = requestURLResponse(BASE_URL + urls['messages'].format(channel), 
                                                         user_token[user]['token'], 
-                                                        params)
+                                                        {'limit': 1})
                         
-                        # Loop through every message and check if the timestamp is <= than the last message processed timestamp
-                        temporary_messages_holder = []
-                        for message in messages:
+                        # If the latest message timestamp is <= than the last message processed, ignore the channel
+                        current_timestamp = twitterSnowflakeToDatetime(messages[0]['id'])
+                        if current_timestamp <= last_proccessed_timestamp:
+                            user_server_channel[user][guild][channel]['status'] = "processed"
+                            continue
 
-                            current_timestamp = datetime.fromtimestamp(((int(message['id']) >> 22) + 1420070400000) / 1000)
-                            if current_timestamp <= last_proccessed_timestamp:
-                                # If a message is found smaller than the last message processed timestamp, break both 
-                                # the loops
-                                check = False
-                                break
-                            
-                            if "attachments" in message:
-                                for attachment in message["attachments"]:
+                        # Update the JSON object with the messages if the message passes the regex filters
+                        if checkFiltersOnMessage(messages[0]):
+                            messages_JSON['messages'] = messages
+                            if "attachments" in messages[0]:
+                                for attachment in messages[0]["attachments"]:
                                     if 'url' in attachment:
                                         downloadContent(attachment['url'], DATA_FOLDER_MEDIA)
-
-                            # Else, write the messages to the JSON object and update the BEFORE param
-                            temporary_messages_holder.append(message)
-                        
-                        # Also, check if the messages list is empty, if it is, break the loop
-                        if len(temporary_messages_holder) == 0:
-                            check = False
-                            break
                         else:
-                            messages = temporary_messages_holder
+                            messages_JSON['messages'] = []
 
-                        # Update the BEFORE param to the last message processed
-                        last_message_processed = messages[-1]['id']
+                        # Set the BEFORE param to the timestamp of the latest message processed
+                        last_message_processed = messages[0]['id']
+                        
+                        print("Processing channel: {}".format(user_server_channel[user][guild][channel]['name']))
 
-                        # Update the JSON object with the messages
-                        messages_JSON['messages'] += messages
+                        # Also, save the latest message ID to store in the config file
+                        latest_message_processed = messages[-1]['id']
+                        
+                        check = True
+                        while (check):
 
-                        # Mini-batch: Write the JSON object to a file for every specific number of messages
-                        if len(messages_JSON['messages']) > NUM_MESSAGES_PER_FILE:
+                            # Get the 'message' endpoint params and set the before param to the last message processed
+                            params = url_params['messages'].copy()
+                            params['before'] = last_message_processed
+                            
+                            # Request the messages before the BEFORE param
+                            messages = requestURLResponse(BASE_URL + urls['messages'].format(channel), 
+                                                            user_token[user]['token'], 
+                                                            params)
+                            
+                            # Loop through every message and check if the timestamp is <= than the last message processed timestamp
+                            temporary_messages_holder = []
+                            for message in messages:
+
+                                current_timestamp = datetime.fromtimestamp(((int(message['id']) >> 22) + 1420070400000) / 1000)
+                                if current_timestamp <= last_proccessed_timestamp:
+                                    # If a message is found smaller than the last message processed timestamp, break both 
+                                    # the loops
+                                    check = False
+                                    break
+
+                                # Write the messages to the holder if the message passes the regex filters
+                                if checkFiltersOnMessage(message):
+                                    temporary_messages_holder.append(message)
+                                    if "attachments" in message:
+                                        for attachment in message["attachments"]:
+                                            if 'url' in attachment:
+                                                downloadContent(attachment['url'], DATA_FOLDER_MEDIA)
+
+                            # Update the BEFORE param to the last message processed
+                            last_message_processed = messages[-1]['id']
+
+                            # Update the JSON object with the messages
+                            messages_JSON['messages'] += temporary_messages_holder
+
+                            # Mini-batch: Write the JSON object to a file for every specific number of messages
+                            if len(messages_JSON['messages']) > NUM_MESSAGES_PER_FILE:
+                                # Reverse the messages in the JSON object so that the messages are in chronological order
+                                messages_JSON['messages'].reverse()
+
+                                # Get current time string
+                                timestr = datetime.now().strftime("%Y%m%d-%H%M%S%f")
+
+                                # Write the JSON object to a file
+                                writeFile(DATA_FOLDER + '{}_{}.json'.format(channel, timestr), messages_JSON)
+
+                                # Upload the Data folder to GCP Storage
+                                logging.info('Uploading extracted messages')
+                                uploadFolder(BUCKET_NAME, DATA_FOLDER, DATA_FOLDER)
+
+                                # delete uploaded files
+                                deleteFolder(DATA_FOLDER)
+
+                                # Initialize messages in the JSON object
+                                messages_JSON['messages'] = []
+
+                        # Upload the rest of files that were not processed by mini-batches
+                        if len(messages_JSON['messages']) > 0:
                             # Reverse the messages in the JSON object so that the messages are in chronological order
                             messages_JSON['messages'].reverse()
 
@@ -625,30 +658,12 @@ def extractMessageFromExploredChannels():
                             # delete uploaded files
                             deleteFolder(DATA_FOLDER)
 
-                            # Initialize messages in the JSON object
-                            messages_JSON['messages'] = []
+                        # Update the config file
+                        user_server_channel[user][guild][channel]['last_processed'] = latest_message_processed
+                        user_server_channel[user][guild][channel]['status'] = "processed"
+                except:
+                    logging.info("Skipping channel: {}".format(user_server_channel[user][guild][channel]['name']))
 
-                    # Upload the rest of files that were not processed by mini-batches
-                    if len(messages_JSON['messages']) > 0:
-                        # Reverse the messages in the JSON object so that the messages are in chronological order
-                        messages_JSON['messages'].reverse()
-
-                        # Get current time string
-                        timestr = datetime.now().strftime("%Y%m%d-%H%M%S%f")
-
-                        # Write the JSON object to a file
-                        writeFile(DATA_FOLDER + '{}_{}.json'.format(channel, timestr), messages_JSON)
-
-                        # Upload the Data folder to GCP Storage
-                        logging.info('Uploading extracted messages')
-                        uploadFolder(BUCKET_NAME, DATA_FOLDER, DATA_FOLDER)
-
-                        # delete uploaded files
-                        deleteFolder(DATA_FOLDER)
-
-                    # Update the config file
-                    user_server_channel[user][guild][channel]['last_processed'] = latest_message_processed
-                    user_server_channel[user][guild][channel]['status'] = "processed"
     
     # Write the updated config file
     writeFile('configs/user_server_channel_DO_NOT_EDIT.json', user_server_channel)
@@ -709,67 +724,96 @@ def extractMessageFromNewChannels():
         for guild in user_server_channel[user]:
             # Loop through every channel and check if the status is 'new'
             for channel in user_server_channel[user][guild]:
-                if user_server_channel[user][guild][channel]['status'] == "new":
-                    logging.info('Extracting messages from channel (User: {}, Guild: {}, Channel: {})'.format(
-                        user, 
-                        guild, 
-                        channel))
 
-                    # Create a new JSON object for the channel
-                    messages_JSON = createBaseMessageJSON(user, guild, channel, user_server_channel[user][guild][channel]['name'])
-                    
-                    print("Processing channel: {}".format(user_server_channel[user][guild][channel]['name']))
+                try:
+                    if user_server_channel[user][guild][channel]['status'] == "new":
+                        logging.info('Extracting messages from channel (User: {}, Guild: {}, Channel: {})'.format(
+                            user, 
+                            guild, 
+                            channel))
 
-                    # Request the latest messages from the channel
-                    messages = requestURLResponse(BASE_URL + urls['messages'].format(channel), 
-                                                    user_token[user]['token'], 
-                                                    {'limit': 1})
-                    
-                    # Update the JSON object with the messages
-                    messages_JSON['messages'] = messages
-
-                    if "attachments" in messages[0]:
-                        for attachment in messages[0]["attachments"]:
-                            if 'url' in attachment:
-                                downloadContent(attachment['url'], DATA_FOLDER_MEDIA)
-
-                    # Set the BEFORE param to the timestamp of the latest message processed
-                    last_message_processed = messages_JSON['messages'][0]['id']
-                    
-                    # Also, save the latest message ID to store in the config file
-                    latest_message_processed = messages_JSON['messages'][-1]['id']
-                    
-                    check = True
-                    while (check):
-                        # Get the 'message' endpoint params and set the before param to the last message processed
-                        params = url_params['messages'].copy()
-                        params['before'] = last_message_processed
+                        # Create a new JSON object for the channel
+                        messages_JSON = createBaseMessageJSON(user, guild, channel, user_server_channel[user][guild][channel]['name'])
                         
-                        # Request the messages before the BEFORE param
+                        print("Processing channel: {}".format(user_server_channel[user][guild][channel]['name']))
+
+                        # Request the latest messages from the channel
                         messages = requestURLResponse(BASE_URL + urls['messages'].format(channel), 
                                                         user_token[user]['token'], 
-                                                        params)
+                                                        {'limit': 1})
 
-                        for message in messages:
-                            if "attachments" in message:
-                                for attachment in message["attachments"]:
+                        # Update the JSON object with the messages if the message passes the regex filters
+                        if checkFiltersOnMessage(messages[0]):
+                            messages_JSON['messages'] = messages
+                            if "attachments" in messages[0]:
+                                for attachment in messages[0]["attachments"]:
                                     if 'url' in attachment:
                                         downloadContent(attachment['url'], DATA_FOLDER_MEDIA)
+                        else:
+                            messages_JSON['messages'] = []
+
+                        # Set the BEFORE param to the timestamp of the latest message processed
+                        last_message_processed = messages[0]['id']
                         
-                        # Check if the messages list is empty, if it is, break both the loops
-                        if len(messages) == 0:
-                            check = False
-                            break
+                        # Also, save the latest message ID to store in the config file
+                        latest_message_processed = messages[-1]['id']
+                        
+                        check = True
+                        while (check):
+                            # Get the 'message' endpoint params and set the before param to the last message processed
+                            params = url_params['messages'].copy()
+                            params['before'] = last_message_processed
+                            
+                            # Request the messages before the BEFORE param
+                            messages = requestURLResponse(BASE_URL + urls['messages'].format(channel), 
+                                                            user_token[user]['token'], 
+                                                            params)
 
-                        # Update the BEFORE param to the last message processed
-                        last_message_processed = messages[-1]['id']
+                            temporary_messages_holder = []
+                            for message in messages:
+                                # Write the messages to the holder if the message passes the regex filters
+                                if checkFiltersOnMessage(message):
+                                    temporary_messages_holder.append(message)
+                                    if "attachments" in message:
+                                        for attachment in message["attachments"]:
+                                            if 'url' in attachment:
+                                                downloadContent(attachment['url'], DATA_FOLDER_MEDIA)
+                            
+                            # Check if the messages list is empty, if it is, break both the loops
+                            if len(messages) == 0:
+                                check = False
+                                break
 
-                        # Update the JSON object with the messages
-                        messages_JSON['messages'] += messages
+                            # Update the BEFORE param to the last message processed
+                            last_message_processed = messages[-1]['id']
 
-                        # Mini-batch: Write the JSON object to a file for every specific number of messages
-                        if len(messages_JSON['messages']) > NUM_MESSAGES_PER_FILE:
+                            # Update the JSON object with the messages
+                            messages_JSON['messages'] += temporary_messages_holder
 
+                            # Mini-batch: Write the JSON object to a file for every specific number of messages
+                            if len(messages_JSON['messages']) > NUM_MESSAGES_PER_FILE:
+
+                                # Reverse the messages in the JSON object so that the messages are in chronological order
+                                messages_JSON['messages'].reverse()
+
+                                # Get current time string
+                                timestr = datetime.now().strftime("%Y%m%d-%H%M%S%f")
+
+                                # Write the JSON object to a file
+                                writeFile(DATA_FOLDER + '{}_{}.json'.format(channel, timestr), messages_JSON)
+
+                                # Upload the Data folder to GCP Storage
+                                logging.info('Uploading extracted messages')
+                                uploadFolder(BUCKET_NAME, DATA_FOLDER, DATA_FOLDER)
+
+                                # delete uploaded files
+                                deleteFolder(DATA_FOLDER)
+
+                                # Initialize messages in the JSON object
+                                messages_JSON['messages'] = []
+
+                        # Upload the rest of files that were not processed by mini-batches
+                        if len(messages_JSON['messages']) > 0:
                             # Reverse the messages in the JSON object so that the messages are in chronological order
                             messages_JSON['messages'].reverse()
 
@@ -786,30 +830,11 @@ def extractMessageFromNewChannels():
                             # delete uploaded files
                             deleteFolder(DATA_FOLDER)
 
-                            # Initialize messages in the JSON object
-                            messages_JSON['messages'] = []
-
-                    # Upload the rest of files that were not processed by mini-batches
-                    if len(messages_JSON['messages']) > 0:
-                        # Reverse the messages in the JSON object so that the messages are in chronological order
-                        messages_JSON['messages'].reverse()
-
-                        # Get current time string
-                        timestr = datetime.now().strftime("%Y%m%d-%H%M%S%f")
-
-                        # Write the JSON object to a file
-                        writeFile(DATA_FOLDER + '{}_{}.json'.format(channel, timestr), messages_JSON)
-
-                        # Upload the Data folder to GCP Storage
-                        logging.info('Uploading extracted messages')
-                        uploadFolder(BUCKET_NAME, DATA_FOLDER, DATA_FOLDER)
-
-                        # delete uploaded files
-                        deleteFolder(DATA_FOLDER)
-
-                    # Update the config file
-                    user_server_channel[user][guild][channel]['last_processed'] = latest_message_processed
-                    user_server_channel[user][guild][channel]['status'] = "processed"
+                        # Update the config file
+                        user_server_channel[user][guild][channel]['last_processed'] = latest_message_processed
+                        user_server_channel[user][guild][channel]['status'] = "processed"
+                except:
+                    logging.info("Skipping channel: {}".format(user_server_channel[user][guild][channel]['name']))
 
     # Write the updated config file
     writeFile('configs/user_server_channel_DO_NOT_EDIT.json', user_server_channel)
