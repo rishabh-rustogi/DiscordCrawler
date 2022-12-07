@@ -59,14 +59,6 @@ def http_entry(request):
     return "Request Complete."
 
 
-#    if request_json and 'name' in request_json:
-#        name = request_json['name']
-#    elif request_args and 'name' in request_args:
-#        name = request_args['name']
-#    else:
-#        name = 'World'
-#    return 'Hello {}!'.format(name)
-
 def create_cmd_parser():
     """ Parse the arguments passed to the script
     Return Values:
@@ -127,4 +119,3 @@ if __name__ == "__main__":
     # Deleting the data folder and the configs folder after the script is done
     discord_chat_retriever_data_hub.delete_folder('data/')
     discord_chat_retriever_data_hub.delete_folder('configs/')
-    
