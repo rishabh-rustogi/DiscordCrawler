@@ -452,7 +452,7 @@ def downloadContent(url, path):
         logging.info('Downloading file: {}'.format(url))
         # Get the file size and download the file only if it is smaller than 8MB
         fileSize = int(requests.head(url).headers['Content-Length'])
-        if fileSize < 8388608:
+        if download_attachments and fileSize <= download_attachments_MAX_SIZE:
             with open(path + fileName, 'wb') as f:
                 f.write(requests.get(url).content)
         else:
