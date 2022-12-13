@@ -108,9 +108,8 @@ class DiscordChatRetrieverDataHub:
             # Loop through every guild
             for guild in guilds:
 
-                 # Filter out guild for testing 
-                # REMOVE THIS LATER
-                if guild['id'] not in ['735708716128796763']:
+                # Filter out guild for testing (TODO: Remove this)
+                if guild['id'] not in ['1015029498317651979']:
                     continue
 
                 # If guild not in user_server_channel, add it
@@ -282,7 +281,7 @@ class DiscordChatRetrieverDataHub:
                                 temporary_messages_holder = []
                                 for message in messages:
 
-                                    current_timestamp = datetime.fromtimestamp(((int(message['id']) >> 22) + 1420070400000) / 1000)
+                                    current_timestamp = self._twitter_snowflake_to_datetime(message['id'])
                                     if current_timestamp <= last_proccessed_timestamp:
                                         # If a message is found smaller than the last message processed timestamp, break both 
                                         # the loops
@@ -583,23 +582,20 @@ class DiscordChatRetrieverDataHub:
         * response.json(): json object -- Response from the request
         """
 
-        # Import global variables
-        global requests_per_second
-        global start_time
-        requests_per_second += 1
+        self.requests_per_second += 1
 
         # Check if global rate limit is reached
         # If so, wait until the next second
-        while requests_per_second > self.GLOBAL_RATE_LIMIT_PER_SEC and time.time_ns() - start_time < 1e9:
+        while self.requests_per_second > self.GLOBAL_RATE_LIMIT_PER_SEC and time.time_ns() - start_time < 1e9:
             continue
 
         # If the next second has started, reset the counter
-        if time.time_ns() - start_time >= 1e9:
-            requests_per_second = 0
-            start_time = time.time_ns()
+        if time.time_ns() - self.start_time >= 1e9:
+            self.requests_per_second = 0
+            self.start_time = time.time_ns()
         
         # Calculate the average RPS and print it
-        print("RPS: {}".format(requests_per_second), end = f'\r')
+        print("RPS: {}".format(self.requests_per_second), end = f'\r')
 
         # Request the URL with the given parameters and headers
         headers = {'Authorization': token}
@@ -612,7 +608,7 @@ class DiscordChatRetrieverDataHub:
                 response.json()['retry_after'], 
                 url))
             time.sleep(int(response.json()['retry_after']))
-            requests_per_second = 0
+            self.requests_per_second = 0
             start_time = time.time_ns()
 
             # Request the URL with the given parameters and headers again
@@ -713,12 +709,11 @@ class DiscordChatRetrieverDataHub:
             path += '/'.join(file_route[len(file_route) - 3:len(file_route) - 2])
             file_name = '/' + url.split('/')[-1]
             self._create_folder(path)
-            logging.info("Downloading file: {}".format(url))
-            # Get the file size and download the file only if it is smaller than 8MB
             file_size = int(requests.head(url).headers['Content-Length'])
-            if file_size < 8388608:
+            if self.download_attachments and file_size < self.download_attachments_MAX_SIZE:
                 with open(path + file_name, 'wb') as f:
                     f.write(requests.get(url).content)
+                logging.info("Downloading file: {}".format(url))
             else:
                 logging.info("File too large ({}): {}".format(file_size, url))
         except Exception as e:
